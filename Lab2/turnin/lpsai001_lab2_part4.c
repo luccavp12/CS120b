@@ -24,6 +24,7 @@ int main(void) {
     unsigned char tmpB = 0x00;
     unsigned char tmpC = 0x00;
     unsigned char tmpD = 0x00;
+    unsigned char TotalMass = 0x00;
    
     /* Insert your solution below */
     while (1) {
@@ -31,27 +32,34 @@ int main(void) {
 	tmpA = PINA;
 	tmpB = PINB;
 	tmpC = PINC;
+	TotalMass = tmpA + tmpB + tmpC;
 
-	if ((tmpA + tmpB + tmpC) > 0x8C) {
+	if ((TotalMass) > 0x8C) {
+	    tmpD = TotalMass << 2;
 	    tmpD = (tmpD | 0x01);
 	}
 	else {
+	    tmpD = TotalMass << 2; 
 	    tmpD = (tmpD & 0xFE);
 	}
 
 	if (tmpA > tmpC) {
 	    if ((tmpA - tmpC) > 0x50) {
+		tmpD = TotalMass << 2;
 		tmpD = (tmpD | 0x02);
 	    }
 	    else {
+		tmpD = TotalMass << 2;
 		tmpD = (tmpD & 0xFD);
 	    }
 	}
 	else {
 	    if ((tmpC - tmpA) > 0x50) {
+		tmpD = TotalMass << 2;
 		tmpD = (tmpD | 0x02);
 	    }
 	    else {
+		tmpD = TotalMass << 2;
 		tmpD = (tmpD & 0xFD);
 	    }
 	}

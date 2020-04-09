@@ -41,35 +41,35 @@ echo Running all tests..."\n\n
 # Add tests below
 
 test “20s all around”
-setPINA 0x14
-setPINB 0x14
-setPINC 0x14
+setPINA 0x30
+setPINB 0x30
+setPINC 0x30
 continue 2
-expectPORTD 0x00
+expectPORTD 0x91
 checkResult
 
 test “50s bruh”
-setPINA 0x32
-setPINB 0x32
-setPINC 0x32
+setPINA 0x55
+setPINB 0x02
+setPINC 0x03
 continue 2
-expectPORTD 0x01
+expectPORTD 0x5A
 checkResult
 
 test “90 10 9”
-setPINA 0x5A
-setPINB 0x0A
-setPINC 0x09
+setPINA 0x20
+setPINB 0x20
+setPINC 0x20
 continue 2
-expectPORTD 0x02
+expectPORTD 0x60
 checkResult
 
 test “everythinggoingwrong”
-setPINA 0x78
-setPINB 0x32
-setPINC 0x14
+setPINA 0x04
+setPINB 0x04
+setPINC 0x04
 continue 2
-expectPORTD 0x03
+expectPORTD 0xC0
 checkResult
 
 test “20sallaroundagain”
