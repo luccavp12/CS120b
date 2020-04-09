@@ -60,6 +60,9 @@ int main(void) {
 	else {
 	    PORTC = cntavaila;
 	}
+
+	cntavaila = 0x00;
+
     }
     return 1;
 }
