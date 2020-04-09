@@ -52,15 +52,13 @@ int main(void) {
 	    cntavaila++;
 	}
 
-	cntavaila = 4 - cntavaila;
-
-	if (!cntavaila) {
-	    PORTC = (0x01 << 7) | cntavaila;
+	if (cntavaila == 0x04) {
+	    PORTC = 0x80;
 	}
 	else {
+	    cntavaila = 4 - cntavaila;
 	    PORTC = cntavaila;
 	}
-
     }
     return 1;
 }
