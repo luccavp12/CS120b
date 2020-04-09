@@ -34,32 +34,34 @@ int main(void) {
 	tmpC = PINC;
 	TotalMass = tmpA + tmpB + tmpC;
 
+	tmpD = TotalMass << 2;
+
 	if ((TotalMass) > 0x8C) {
-	    tmpD = TotalMass << 2;
+	    //tmpD = TotalMass << 2;
 	    tmpD = (tmpD | 0x01);
 	}
 	else {
-	    tmpD = TotalMass << 2; 
+	    //tmpD = TotalMass << 2; 
 	    tmpD = (tmpD & 0xFE);
 	}
 
 	if (tmpA > tmpC) {
 	    if ((tmpA - tmpC) > 0x50) {
-		tmpD = TotalMass << 2;
+		//tmpD = TotalMass << 2;
 		tmpD = (tmpD | 0x02);
 	    }
 	    else {
-		tmpD = TotalMass << 2;
+		//tmpD = TotalMass << 2;
 		tmpD = (tmpD & 0xFD);
 	    }
 	}
 	else {
 	    if ((tmpC - tmpA) > 0x50) {
-		tmpD = TotalMass << 2;
+		//tmpD = TotalMass << 2;
 		tmpD = (tmpD | 0x02);
 	    }
 	    else {
-		tmpD = TotalMass << 2;
+		//tmpD = TotalMass << 2;
 		tmpD = (tmpD & 0xFD);
 	    }
 	}
