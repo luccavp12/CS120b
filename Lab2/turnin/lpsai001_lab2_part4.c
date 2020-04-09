@@ -34,7 +34,7 @@ int main(void) {
 	tmpC = PINC;
 	TotalMass = tmpA + tmpB + tmpC;
 
-	tmpD = TotalMass << 2;
+	tmpD = TotalMass;
 
 	if ((TotalMass) > 0x8C) {
 	    //tmpD = TotalMass << 2;
@@ -42,7 +42,7 @@ int main(void) {
 	}
 	else {
 	    //tmpD = TotalMass << 2; 
-	    tmpD = (tmpD & 0xFE);
+	    //tmpD = (tmpD & 0xFE);
 	}
 
 	if (tmpA > tmpC) {
@@ -52,7 +52,7 @@ int main(void) {
 	    }
 	    else {
 		//tmpD = TotalMass << 2;
-		tmpD = (tmpD & 0xFD);
+		//tmpD = (tmpD & 0xFD);
 	    }
 	}
 	else {
@@ -62,7 +62,7 @@ int main(void) {
 	    }
 	    else {
 		//tmpD = TotalMass << 2;
-		tmpD = (tmpD & 0xFD);
+		//tmpD = (tmpD & 0xFD);
 	    }
 	}
 
