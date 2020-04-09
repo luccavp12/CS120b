@@ -52,11 +52,12 @@ int main(void) {
 	    cntavaila++;
 	}
 
-	if (cntavaila == 0x04) {
+	cntavaila = 4 - cntavaila;
+
+	if (!cntavaila) {
 	    PORTC = 0x80;
 	}
 	else {
-	    cntavaila = 4 - cntavaila;
 	    PORTC = cntavaila;
 	}
     }
