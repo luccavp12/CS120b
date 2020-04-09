@@ -15,48 +15,57 @@
 int main(void) {
     /* Insert DDR and PORT initializations */
 
-    DDRA = 0x00; PORTA = 0xFF;
-    DDRB = 0x00; PORTB = 0xFF;   
-    DDRC = 0x00; PORTC = 0xFF; // ABC are input
-    DDRD = 0xFF; PORTD = 0x00; // D is the output
- 
-    unsigned char tmpA = 0x00;
-    unsigned char tmpB = 0x00;
-    unsigned char tmpC = 0x00;
-    unsigned char tmpD = 0x00;
+    DDRA = 0x00; PORTA = 0xFF; // Configure port A's 8 pins as inputs
+    DDRC = 0xFF; PORTC = 0x00; // Configure port C's 8 pins as outputs, initialize output on PORTC to 0x00   
+    DDRB = 0xFF; PORTB = 0x00;
+
+    unsigned char cntavaila = 0x00;
+    unsigned char tempA = 0x00;
+    unsigned char first = 0x00;
+    unsigned char second = 0x00;
+    unsigned char third = 0x00;
+    unsigned char fourth = 0x00;
+
+
+
+//unsigned char cnttaken = 0x04
    
     /* Insert your solution below */
     while (1) {
 	
-	tmpA = PINA;
-	tmpB = PINB;
-	tmpC = PINC;
+	tempA = PINA;
 
-	if ((tmpA + tmpB + tmpC) > 0x8C) {
-	    tmpD = (tmpD | 0x01);
+	//cntavaila = (tempA & 0x01) + (tempA & 0x02) + (tempA & 0x04) + (tempA & 0x08);
+	
+	first = (tempA & 0x01);
+	second = (tempA & 0x02);
+	third = (tempA & 0x04);
+	fourth = (tempA & 0x08);
+	
+	if (first) {
+	    cntavaila++;
 	}
-	else {
-	    tmpD = (tmpD & 0xFE);
+	if (second) {
+	    cntavaila++;
 	}
-
-	if (tmpA > tmpC) {
-	    if ((tmpA - tmpC) > 0x50) {
-		tmpD = (tmpD | 0x02);
-	    }
-	    else {
-		tmpD = (tmpD & 0xFD);
-	    }
+	if (third) {
+	    cntavaila++;
 	}
-	else {
-	    if ((tmpC - tmpA) > 0x50) {
-		tmpD = (tmpD | 0x02);
-	    }
-	    else {
-		tmpD = (tmpD & 0xFD);
-	    }
+	if (fourth) {
+	    cntavaila++;
 	}
 
-	PORTD = tmpD;
+	//cntavaila = first + second + third + fourth;
+
+	PORTB = cntavaila;
+	
+	//printf("cntavaila: %d\n", cntavaila);
+	
+	cntavaila = 4 - cntavaila;
+
+	PORTC = cntavaila;
+
+	cntavaila = 0x00;
 
     }
     return 1;

@@ -40,47 +40,41 @@ echo Running all tests..."\n\n
 
 # Add tests below
 
-test “20s all around”
-setPINA 0x14
-setPINB 0x14
-setPINC 0x14
+test “PINA: 0x00 => PORTC: 0x04”
+setPINA 0x00
 continue 2
-expectPORTD 0x00
+expectPORTC 0x04
 checkResult
 
-test “50s bruh”
-setPINA 0x32
-setPINB 0x32
-setPINC 0x32
+test “PINA: 0x01 => PORTC: 0x03”
+setPINA 0x01
 continue 2
-expectPORTD 0x01
+expectPORTC 0x03
 checkResult
 
-test “90 10 9”
-setPINA 0x5A
-setPINB 0x0A
-setPINC 0x09
+test “PINA: 0x02 => PORTC: 0x03”
+setPINA 0x02
 continue 2
-expectPORTD 0x02
+expectPORTC 0x03
 checkResult
 
-test “everythinggoingwrong”
-setPINA 0x78
-setPINB 0x32
-setPINC 0x14
+test “PINA: 0x03 => PORTC: 0x02”
+setPINA 0x03
 continue 2
-expectPORTD 0x03
+expectPORTC 0x02
 checkResult
 
-test “20sallaroundagain”
-setPINA 0x14
-setPINB 0x14
-setPINC 0x14
+test PINA: 0x04 => PORTC: 0x03
+setPINA 0x04
 continue 2
-expectPORTD 0x00
+expectPORTC 0x03
 checkResult
 
-
+test PINA: 0x05 => PORTC: 0x02
+setPINA 0x05
+continue 2
+expectPORTC 0x02
+checkResult
 
 # Finished adding tests
 
