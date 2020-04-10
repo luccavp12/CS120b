@@ -42,7 +42,7 @@ int main(void) {
 	}
 	
 	PORTC = count;	
-
+	count = 0x00;
     }
     return 1;
 }
