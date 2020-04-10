@@ -28,7 +28,10 @@ int main(void) {
     while (1) {
 	tempA = PINA;
 	
-	if ((tempA == 0x01) || (tempA == 0x02)) {
+	if (!tempA) {
+	    PORTC = 0x40;
+	}
+	else if ((tempA == 0x01) || (tempA == 0x02)) {
 	    PORTC = 0x60;
 	}
 	else if ((tempA == 0x03) || (tempA == 0x04)) {
