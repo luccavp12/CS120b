@@ -24,9 +24,14 @@ int main(void) {
  
     /* Insert your solution below */
     while (1) {
+	tempA = PINA;
+	tempB = PINB;
+
+	pos = 0x01;
 
 	for (i = 0; i < 8; i++) {
-	    
+	    if ((tempA & pos)) {
+		 
 
     }
     return 1;
