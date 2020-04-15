@@ -23,36 +23,51 @@ int main(void) {
     //unsigned char pos = 0x00;
     unsigned char tempA = 0x00; 
     unsigned char tempAtest = 0x00;
+    unsigned char tempC = 0x00;
 
     /* Insert your solution below */
     while (1) {
-	tempA = PINA;
-	tempAtest = PINA;
-
+	tempA = PINA & 0x0F;
+	tempAtest = PINA >> 4;
+	//PORTC = 0xFF;	
+/*
 	if ((tempAtest >> 4) == 0x03) {
-	    tempA = tempA | 0xFF;
+	    tempC = tempC | 0x80;
 	}
 	else if ((tempAtest >> 4) != 0x03) {
-	    tempA = tempA & 0x7F;
+	    tempC = tempC & 0x7F;
 	}
-	else if ((tempA == 0x01) || (tempA == 0x02)) {
-	    PORTC = 0x60;
+*/
+	if ((tempA == 0x01) || (tempA == 0x02)) {
+	    tempC = tempC | 0x60;
 	}
 	else if ((tempA == 0x03) || (tempA == 0x04)) {
-	    PORTC = 0x70;
+	    tempC = tempC | 0x70;
 	}
 	else if ((tempA == 0x05) || (tempA == 0x06)) {
-	    PORTC = 0x38;
+	    tempC = tempC | 0x38;
 	}
 	else if ((tempA == 0x07) || (tempA == 0x09)) {
-	    PORTC = 0x3C;
+	    tempC = tempC | 0x3C;
 	}
 	else if ((tempA == 0x0A) || (tempA == 0x0C)) {
-	    PORTC = 0x3E;
+	    tempC = tempC | 0x3E;
 	}
 	else if ((tempA == 0x0D) || (tempA == 0x0F)) {
-	    PORTC = 0x3F;
+	    tempC = tempC | 0x3F;
 	}
+	else if (tempAtest == 0x03) {
+	    tempC = tempC | 0x80;
+	}
+	else if (tempAtest != 0x03) {
+	    tempC = tempC & 0x7F;
+	}
+	else {
+	    PORTC = 0xFF;
+	}
+
+	PORTC = tempC;
+	tempC = 0x00;
     }
     return 1;
 }

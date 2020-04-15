@@ -1,4 +1,5 @@
-# Test file for "Lab3"
+#
+#Test file for "Lab3"
 
 
 # commands.gdb provides the following functions for ease:
@@ -26,22 +27,22 @@
 echo ======================================================\n
 echo Running all tests..."\n\n
 
-test "PINA: 0x01 => PORTC: 0x60"
-setPINA 0x01
-continue 2
+test "PINA: 0x11 => PORTC: 0x60"
+setPINA 0x11
+continue 1
 expectPORTC 0x60
 checkResult
 
-test "PINA: 0x0F => PORTC: 0x3F"
-setPINA 0x0F
-continue 2
-expectPORTC 0x3F
+test "PINA: 0x25 => PORTC: 0x38"
+setPINA 0x25
+continue 1
+expectPORTC 0x38
 checkResult
 
-test "PINA: 0x05 => PORTC: 0x38"
-setPINA 0x05
-continue 2
-expectPORTC 0x38
+test "PINA: 0x47 => PORTC: 0x3C"
+setPINA 0x47
+continue 1
+expectPORTC 0x3C
 checkResult
 
 # Report on how many tests passed/tests ran
