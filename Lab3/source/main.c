@@ -14,9 +14,9 @@
 
 int main(void) {
     /* Insert DDR and PORT initializations */
-    DDRA = 0x00; PORTA = 0xFF; // Configure port A's 8 pins as inputs
-    DDRB = 0xFF; PORTB = 0x00;
-    DDRC = 0xFF; PORTC = 0x00; // Configure port C's 8 pins as outputs, initialize output on PORTC to 0x00   
+    //DDRA = 0x00; PORTA = 0xFF; // Configure port A's 8 pins as inputs
+    DDRB = 0xFE; PORTB = 0x00;
+    DDRD = 0x00; PORTC = 0xFF; // All of D is inputs, while only B0 is input   
     
     //unsigned char i = 0x00;
     //unsigned char count = 0x00;
@@ -28,17 +28,8 @@ int main(void) {
     /* Insert your solution below */
     while (1) {
 
-	tempA = PINA;
+	
 
-	tempB = tempA >> 4;
-	PORTB = tempB;
-	//tempC = tempA & 0x0F;
-	tempC = tempA << 4;
-	PORTC = tempC;
-
-	tempA = 0x00;
-	tempB = 0x00;
-	tempC = 0x00;
     }
-    return 1;
+   return 1;
 }
