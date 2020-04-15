@@ -22,13 +22,20 @@ int main(void) {
     //unsigned char count = 0x00;
     //unsigned char pos = 0x00;
     unsigned char tempA = 0x00; 
-    //unsigned char tempB = 0x00;
+    unsigned char tempAtest = 0x00;
 
     /* Insert your solution below */
     while (1) {
 	tempA = PINA;
-	
-	if ((tempA == 0x01) || (tempA == 0x02)) {
+	tempAtest = PINA;
+
+	if ((tempAtest >> 4) == 0x03) {
+	    tempA = tempA | 0xFF;
+	}
+	else if ((tempAtest >> 4) != 0x03) {
+	    tempA = tempA & 0x7F;
+	}
+	else if ((tempA == 0x01) || (tempA == 0x02)) {
 	    PORTC = 0x60;
 	}
 	else if ((tempA == 0x03) || (tempA == 0x04)) {
