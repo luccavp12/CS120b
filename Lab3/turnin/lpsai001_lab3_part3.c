@@ -15,7 +15,7 @@
 int main(void) {
     /* Insert DDR and PORT initializations */
     DDRA = 0x00; PORTA = 0xFF; // Configure port A's 8 pins as inputs
-    //DDRB = 0x00; PORTB = 0xFF;
+    DDRB = 0xFF; PORTB = 0x00;
     DDRC = 0xFF; PORTC = 0x00; // Configure port C's 8 pins as outputs, initialize output on PORTC to 0x00   
     
     //unsigned char i = 0x00;
@@ -29,6 +29,7 @@ int main(void) {
     while (1) {
 	tempA = PINA & 0x0F;
 	tempAtest = PINA >> 4;
+	//PORTB = tempAtest;
 	//PORTC = 0xFF;	
 /*
 	if ((tempAtest >> 4) == 0x03) {
@@ -56,18 +57,19 @@ int main(void) {
 	else if ((tempA == 0x0D) || (tempA == 0x0F)) {
 	    tempC = tempC | 0x3F;
 	}
-	else if (tempAtest == 0x03) {
+
+	if (tempAtest == 0x03) {
 	    tempC = tempC | 0x80;
+	    //PORTB = tempAtest;
 	}
 	else if (tempAtest != 0x03) {
 	    tempC = tempC & 0x7F;
-	}
-	else {
-	    PORTC = 0xFF;
+	    //PORTB = tempAtest;
 	}
 
 	PORTC = tempC;
 	tempC = 0x00;
+	tempAtest = 0x00;
     }
     return 1;
 }
