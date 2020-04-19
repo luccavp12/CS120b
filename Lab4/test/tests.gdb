@@ -48,7 +48,27 @@ continue 2
 expectPORTB 0x01
 checkResult
 
-test "(Lock) => PINA: 0x80 => PORTB: 0x00"
+test "(Lock using sequence) => PINA: 0x04, 0x00, 0x02 => PORTB: 0x01"
+setPINA 0x04
+continue 2
+setPINA 0x00
+continue 2
+setPINA 0x02
+continue 2
+expectPORTB 0x00
+checkResult
+
+test "(Unlock after lock) => PINA: 0x04, 0x00, 0x02 => PORTB: 0x01"
+setPINA 0x04
+continue 2
+setPINA 0x00
+continue 2
+setPINA 0x02
+continue 2
+expectPORTB 0x01
+checkResult
+
+test "(Lock from inside) => PINA: 0x80 => PORTB: 0x00"
 setPINA 0x80
 continue 2
 expectPORTB 0x00

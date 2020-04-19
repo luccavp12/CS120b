@@ -12,7 +12,7 @@
 #include "simAVRHeader.h"
 #endif
 
-enum States {Start, Locked, HashPressed, HashReleased, Unlocked} state;
+enum States {Start, Locked, HashPressed, HashReleased, Unlocked, HashPressed2, HashReleased2} state;
 
 unsigned char tempA = 0x00;
 unsigned char tempB = 0x00;
@@ -25,7 +25,7 @@ void Tick() {
 	    break;
 	case Locked:
 	    if (tempA == 0x04) {
-		state = HashPressed;
+		    state = HashPressed;
 	    }
 	    else {
 		state = Locked;
@@ -57,6 +57,31 @@ void Tick() {
 	    if (tempA >> 7) {
 		state = Locked;
 	    }
+	    else if (tempA == 0x04) {
+		state = HashPressed2;
+	    }
+	    else {
+		state = Unlocked;
+	    }
+	    break;
+	case HashPressed2:
+	    if (tempA == 0x04) {
+		state = HashPressed2;
+	    }
+	    else if (tempA == 0x00) {
+		state = HashReleased2;
+	    }
+	    else {
+		state = Unlocked;
+	    }
+	    break;
+	case HashReleased2:
+	    if (tempA == 0x00) {
+		state = HashReleased2;
+	    }
+	    else if (tempA == 0x02) {
+		state = Locked;
+	    }
 	    else {
 		state = Unlocked;
 	    }
@@ -83,6 +108,12 @@ void Tick() {
 	case Unlocked:
 	    tempB = 0x01;
 	    tempC = 0x04;
+	    break;
+	case HashPressed2:
+	    tempC = 0x05;
+	    break;
+	case HashReleased2:
+	    tempC = 0x06;
 	    break;
 	default:
 	    break;
