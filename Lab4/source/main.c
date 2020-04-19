@@ -44,10 +44,10 @@ int main(void) {
 		    count++;
 		}
 		else if (tempA == 0x02) {
-		    count = 0;
+		    count--;
 		}
 		else {
-		    count--;
+		    count = 0x00;
 		}
 	    }	    
 	}
