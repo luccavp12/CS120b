@@ -15,11 +15,11 @@
 int main(void) {
 
     DDRA = 0x00; PORTA = 0xFF;
-    DDRB = 0xFF; PORTB = 0x01;
+    DDRC = 0xFF; PORTC = 0x07;
     
     unsigned char tempA = 0x00;
     unsigned char pressed = 0x00;
-    unsigned char switched = 0x00;
+    unsigned char count = 0x07;
 
     while (1) {
 	
@@ -33,16 +33,26 @@ int main(void) {
 	}
 
 	if (pressed == 0x01) {
-	    if (!switched) {
-		PORTB = 0x02;
-		switched = 0x01;
+            if (count == 0x09){
+	        PORTC = count;
 	    }
-	    else {
-		PORTB = 0x01;
-		switched = 0x00;
+	    else if (count == 0x00) {
+		PORTC = count;
 	    }
+	    else {	    
+		if (tempA == 0x01) {
+		    count++;
+		}
+		else if (tempA == 0x02) {
+		    count = 0;
+		}
+		else {
+		    count--;
+		}
+	    }	    
 	}
-	
+
+	PORTC = count;	
     }
     return 1;
 }
