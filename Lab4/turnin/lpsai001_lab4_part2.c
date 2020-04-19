@@ -16,14 +16,24 @@ int main(void) {
 
     DDRA = 0x00; PORTA = 0xFF;
     DDRC = 0xFF; PORTC = 0x07;
-    
+    DDRB = 0xFF; PORTB = 0x00;    
+
     unsigned char tempA = 0x00;
+    unsigned char tempB = 0x00;
     unsigned char pressed = 0x00;
     unsigned char count = 0x07;
+    unsigned char changed = 0x00;
 
     while (1) {
-	
+	tempB = tempA;
 	tempA = PINA;
+
+	if (tempB != tempA) {
+	    changed = 0x01;
+	}
+	else {
+	    changed = 0x00;
+	}
 
 	if (tempA) {
 	    pressed += 0x01;
@@ -32,11 +42,11 @@ int main(void) {
 	    pressed = 0x00;
 	}
 
-	if (pressed == 0x01) {
-            if (count == 0x09){
+	if ((pressed == 0x01) && (changed)) {
+            if ((count == 0x09) && (tempA == 0x01)){
 	        PORTC = count;
 	    }
-	    else if (count == 0x00) {
+	    else if ((count == 0x00) && (tempA == 0x02)) {
 		PORTC = count;
 	    }
 	    else {	    
@@ -51,7 +61,9 @@ int main(void) {
 		}
 	    }	    
 	}
-
+	else if (tempA == 0x03) {
+	   count = 0x00;
+	}
 	PORTC = count;	
     }
     return 1;
