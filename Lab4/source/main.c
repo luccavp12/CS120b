@@ -12,7 +12,7 @@
 #include "simAVRHeader.h"
 #endif
 
-enum States {Start, Locked, HashPressed, HashReleased, Unlocked, HashPressed2, HashReleased2} state;
+enum States {Start, Locked, HashPressed, HashReleased, XPressed, XReleased, YPressed, YReleased, Unlocked, HashPressed2, HashReleased2} state;
 
 unsigned char tempA = 0x00;
 unsigned char tempB = 0x00;
