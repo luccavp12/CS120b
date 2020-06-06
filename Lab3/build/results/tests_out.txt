@@ -4,4 +4,4 @@ Note: automatically using hardware breakpoints for read-only addresses.
 Running all tests..."
 
 "WEIGHT > 70: PIND: 0xFF, PINB: 0x01 => PORTB: 0x02"..."WEIGHT = 70: PIND: 0x23, PINB: 0x00 => PORTB: 0x02"..."WEIGHT < 70 and WEIGHT > 5: PIND: 0x05, PINB: 0x01 => PORTB: 0x04"...======================================================
-Quitting: Remote doesn't know how to detach
+Remote doesn't know how to detach
